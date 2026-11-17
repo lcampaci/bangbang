@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Bang! Bang!</title>
+<meta name="theme-color" content="#808080">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-32.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="desk">
+  <div id="win">
+    <div id="title"><div class="sysbox"></div><div class="ttxt">Bang! Bang!</div><div class="mm"><span>▼</span><span>▲</span></div></div>
+    <div id="menubar"></div>
+    <div id="client">
+      <canvas id="cv" width="512" height="391"></canvas>
+      <div id="status"><span id="wind"></span><span id="next">Next shot:</span><span id="chip"></span></div>
+    </div>
+  </div>
+  <div id="tools">
+    <label>Idioma <select id="language" aria-label="Idioma"><option value="pt">Português (Brasil)</option><option value="en">English</option></select></label>
+    <button id="fullscreen" type="button">Tela cheia</button>
+    <label>Escala <select id="scale"><option value="0">Auto</option><option value="1">1×</option><option value="2">2×</option><option value="3">3×</option></select></label>
+    <label>Velocidade do tiro <input id="speed" type="range" min="1" max="12" value="4"></label>
+  </div>
+</div>
+<div id="overlay" hidden></div>
+<script src="assets.js"></script>
+<script src="engine.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+Bang! Bang! — versão com tela cheia e idioma
+
+Melhorias:
+- Botão Tela cheia: usa a tela inteira do navegador; pressione Esc para sair ou clique no botão novamente.
+- Seletor de idioma: Português (Brasil) e English.
+- O idioma escolhido fica salvo neste navegador.
+- Escala Auto continua disponível e ajusta a janela do jogo ao espaço disponível.
+- O motor, as regras, os recursos gráficos e o formato de gravação .SAV foram preservados.
+
+Como usar:
+1. Extraia todos os arquivos mantendo as pastas.
+2. Abra index.html em um navegador moderno ou publique a pasta em um servidor HTTPS/HTTP.
+3. Se estiver instalado como PWA, feche e abra novamente para atualizar o cache; o cache foi atualizado para bangbang-v2.
+
+Observação: o navegador pode exigir que o botão Tela cheia seja acionado por um clique do usuário. Em celulares, a orientação paisagem oferece a melhor área de jogo.
