@@ -1,32 +1,41 @@
 *{box-sizing:border-box}
-html,body{margin:0;height:100%;background:#808080;overflow:hidden}
-body{font:bold 13px/16px "MS Sans Serif",Arial,Helvetica,sans-serif;color:#000;-webkit-user-select:none;user-select:none}
-#desk{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
-#win{background:#c0c0c0;border:2px solid #000;box-shadow:inset 0 0 0 2px #c0c0c0;padding:2px;transform-origin:center center}
-#title{background:#00f;color:#fff;height:20px;display:flex;align-items:center;border-bottom:1px solid #000;margin-bottom:0}
-#title .sysbox{width:20px;height:20px;background:#c0c0c0;border:1px solid #000;position:relative}
+html,body{margin:0;width:100%;height:100%;background:#151923;overflow:hidden}
+body{font:13px/1.4 "Segoe UI",Arial,sans-serif;color:#e8edf5;-webkit-user-select:none;user-select:none}
+#desk{width:100vw;height:100vh;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:0;background:radial-gradient(ellipse at 35% 30%,#293346 0%,#171e2a 58%,#111722 100%);overflow:hidden}
+#game-area{min-width:0;min-height:0;padding:22px;display:flex;align-items:stretch;justify-content:center}
+#win{width:100%;height:100%;min-width:0;min-height:0;background:#c0c0c0;border:2px solid #05080d;box-shadow:0 18px 55px rgba(0,0,0,.38),inset 0 0 0 2px #e2e2e2;padding:3px;display:flex;flex-direction:column;overflow:hidden}
+#title{background:linear-gradient(90deg,#071b57,#164bb4 55%,#0a286f);color:#fff;height:28px;min-height:28px;display:flex;align-items:center;border-bottom:1px solid #000;margin-bottom:0;padding-right:3px;font:bold 13px "MS Sans Serif",Arial,sans-serif}
+#title .sysbox{width:22px;height:22px;background:#c0c0c0;border:1px solid #000;position:relative;margin:0 3px}
 #title .sysbox:after{content:"";position:absolute;left:4px;right:4px;top:8px;height:3px;background:#fff;border:1px solid #000}
-#title .ttxt{flex:1;text-align:center}
+#title .ttxt{flex:1;text-align:left;padding-left:5px}
 #title .mm{display:flex}#title .mm span{width:20px;height:20px;background:#c0c0c0;color:#000;border:1px solid #000;text-align:center;font-size:9px;line-height:18px}
-#menubar{background:#fff;border-bottom:1px solid #000;display:flex;height:20px;position:relative}
-.mi{padding:2px 8px;cursor:default;position:relative}
-.mi.open,.mi:hover{background:#00f;color:#fff}
+#menubar{background:#e8e8e8;border-bottom:1px solid #555;display:flex;height:25px;min-height:25px;position:relative;color:#111;font:bold 13px "MS Sans Serif",Arial,sans-serif}
+.mi{padding:4px 11px;cursor:default;position:relative}
+.mi.open,.mi:hover{background:#164bb4;color:#fff}
 .mi.dis{color:#808080}
 .mi u{text-decoration:underline}
-.drop{position:absolute;left:0;top:19px;background:#fff;border:1px solid #000;min-width:170px;z-index:50;padding:2px 0;box-shadow:2px 2px 0 #000}
-.drop .it{padding:2px 20px 2px 18px;white-space:nowrap;color:#000}
-.drop .it:hover{background:#00f;color:#fff}
+.drop{position:absolute;left:0;top:24px;background:#fff;border:1px solid #000;min-width:170px;z-index:50;padding:2px 0;box-shadow:3px 3px 0 rgba(0,0,0,.35)}
+.drop .it{padding:3px 20px 3px 18px;white-space:nowrap;color:#000}
+.drop .it:hover{background:#164bb4;color:#fff}
 .drop .it.dis{color:#808080}.drop .it.dis:hover{background:#fff;color:#808080}
-.drop hr{border:0;border-top:1px solid #000;margin:2px 0}
-#client{background:#fff;width:512px}
-#cv{display:block;width:512px;height:391px;image-rendering:pixelated;background:#0ff}
-#status{position:relative;height:19px;background:#fff;border-top:0;display:block}
-#status span{position:absolute;top:1px}
-#wind{left:0;white-space:pre}
-#next{left:300px;width:180px;text-align:right;white-space:pre}
-#chip{left:480px;top:3px!important;width:30px;height:12px;background:#0f0}
-#tools{font:12px Arial,sans-serif;color:#fff;display:flex;gap:16px;align-items:center}
-#tools select,#tools input{vertical-align:middle}
+.drop hr{border:0;border-top:1px solid #999;margin:2px 0}
+#client{background:#fff;width:100%;min-height:0;flex:1;display:flex;flex-direction:column;overflow:hidden}
+#cv{display:block;width:100%;height:100%;max-height:none;flex:1;min-height:0;object-fit:contain;image-rendering:pixelated;background:#0ff}
+#status{position:relative;height:23px;min-height:23px;background:#e8e8e8;border-top:1px solid #777;display:flex;align-items:center;padding:0 9px;color:#111;font:bold 12px "MS Sans Serif",Arial,sans-serif}
+#status span{position:static;top:auto}#wind{flex:1;white-space:pre}#next{width:auto;text-align:right;white-space:pre;margin-right:8px}#chip{width:30px;height:12px;background:#0f0;border:1px solid #333}
+#tools{background:linear-gradient(180deg,#202a3a,#171f2c);border-left:1px solid #3b485b;padding:25px 20px 18px;display:flex;flex-direction:column;gap:24px;min-width:0;box-shadow:-12px 0 35px rgba(0,0,0,.16)}
+.side-head{display:flex;align-items:center;gap:12px;padding-bottom:19px;border-bottom:1px solid #3b485b}
+.side-mark{width:43px;height:43px;border-radius:12px;background:linear-gradient(145deg,#3479e8,#1747a0);display:grid;place-items:center;color:white;font-weight:900;font-size:16px;letter-spacing:-1px;box-shadow:0 5px 16px #0b1222}
+.side-title{font-size:15px;font-weight:700;color:#f4f7fc}.side-subtitle{font-size:10px;letter-spacing:1.7px;color:#8fa2bd;margin-top:3px}
+.tool-section{display:flex;flex-direction:column;gap:11px}.section-title{font-size:10px;font-weight:800;letter-spacing:1.6px;color:#7f9bc1;margin-bottom:2px}
+.tool-label{display:flex;justify-content:space-between;align-items:center;color:#dce5f2;font-size:12px;font-weight:600}
+#language{width:100%;height:39px;border:1px solid #465771;border-radius:8px;background:#111a28;color:#f3f6fb;padding:0 10px;font:13px "Segoe UI",Arial,sans-serif;outline:none}
+#language:focus{border-color:#5b9bff;box-shadow:0 0 0 2px rgba(65,139,255,.18)}
+.side-button{width:100%;height:42px;border:1px solid #477fd0;border-radius:8px;background:linear-gradient(180deg,#286bd0,#1c51a7);color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;gap:9px;cursor:pointer;box-shadow:0 5px 13px rgba(0,0,0,.2)}
+.side-button:hover{filter:brightness(1.12)}.side-button:active{transform:translateY(1px)}.button-icon{font-size:19px;line-height:1}
+#speed{width:100%;accent-color:#4d91ff;cursor:pointer;margin:2px 0}
+#speed-value{color:#9fc4ff;font-variant-numeric:tabular-nums}.range-hints{display:flex;justify-content:space-between;color:#8091a9;font-size:10px;margin-top:-7px}
+.side-footer{margin-top:auto;padding-top:15px;border-top:1px solid #3b485b;color:#aab8cb;font-size:11px;display:flex;align-items:center;gap:7px}.status-dot{width:7px;height:7px;border-radius:50%;background:#53d68a;box-shadow:0 0 8px #53d68a}.footer-version{margin-left:auto;color:#71829a}
 #overlay{position:fixed;inset:0;z-index:100}
 #overlay[hidden]{display:none}
 .dlg{position:absolute;background:#c0c0c0;border:1px solid #000;outline:3px solid #c0c0c0;box-shadow:0 0 0 4px #000,6px 6px 0 4px rgba(0,0,0,.35);}
@@ -43,13 +52,6 @@ body{font:bold 13px/16px "MS Sans Serif",Arial,Helvetica,sans-serif;color:#000;-
 .lst div{padding:0 3px}.lst div.sel{background:#00f;color:#fff}
 .mbtxt{white-space:pre-wrap}
 
-/* Ajustes de tela ampla e modo tela cheia */
-#desk{width:100%;min-width:0}
-#win{max-width:calc(100vw - 12px)}
-#tools{max-width:100%;flex-wrap:wrap;justify-content:center;padding:0 8px}
-#tools button,#tools select{font:12px Arial,sans-serif}
-#fullscreen{padding:3px 9px;cursor:pointer}
-#desk:fullscreen{background:#808080;width:100vw;height:100vh;justify-content:center;align-items:center}
-#desk:fullscreen #win{max-width:none}
-#desk:fullscreen #tools{padding-bottom:8px}
-@media(max-width:560px){#desk{justify-content:flex-start;gap:5px;padding-top:8px}#tools{gap:7px;font-size:11px}#tools label{white-space:nowrap}#win{transform-origin:top center!important}}
+#desk:fullscreen{width:100vw;height:100vh}
+@media(max-width:760px){html,body{overflow:auto}#desk{height:auto;min-height:100vh;grid-template-columns:1fr;grid-template-rows:minmax(65vh,1fr) auto;overflow:visible}#game-area{padding:10px;min-height:65vh}#win{min-height:60vh}#tools{border-left:0;border-top:1px solid #3b485b;padding:17px;gap:15px}.side-head{padding-bottom:12px}.side-footer{margin-top:0}}
+@media(min-width:761px) and (max-height:560px){#game-area{padding:10px}#tools{padding:14px 16px;gap:13px}.side-head{padding-bottom:10px}}

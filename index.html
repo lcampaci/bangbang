@@ -12,6 +12,7 @@
 </head>
 <body>
 <div id="desk">
+  <main id="game-area">
   <div id="win">
     <div id="title"><div class="sysbox"></div><div class="ttxt">Bang! Bang!</div><div class="mm"><span>▼</span><span>▲</span></div></div>
     <div id="menubar"></div>
@@ -20,12 +21,26 @@
       <div id="status"><span id="wind"></span><span id="next">Next shot:</span><span id="chip"></span></div>
     </div>
   </div>
-  <div id="tools">
-    <label>Idioma <select id="language" aria-label="Idioma"><option value="pt">Português (Brasil)</option><option value="en">English</option></select></label>
-    <button id="fullscreen" type="button">Tela cheia</button>
-    <label>Escala <select id="scale"><option value="0">Auto</option><option value="1">1×</option><option value="2">2×</option><option value="3">3×</option></select></label>
-    <label>Velocidade do tiro <input id="speed" type="range" min="1" max="12" value="4"></label>
-  </div>
+  </main>
+  <aside id="tools" aria-label="Painel lateral">
+    <div class="side-head">
+      <div class="side-mark">BB</div>
+      <div><div class="side-title">Painel do jogo</div><div class="side-subtitle">PREFERÊNCIAS</div></div>
+    </div>
+    <section class="tool-section">
+      <div class="section-title">EXIBIÇÃO</div>
+      <label class="tool-label" for="language">Idioma</label>
+      <select id="language" aria-label="Idioma"><option value="pt">Português (Brasil)</option><option value="en">English</option></select>
+      <button id="fullscreen" class="side-button" type="button"><span class="button-icon">⛶</span><span>Tela cheia</span></button>
+    </section>
+    <section class="tool-section">
+      <div class="section-title">JOGABILIDADE</div>
+      <label class="tool-label" for="speed">Velocidade do tiro <output id="speed-value">4</output></label>
+      <input id="speed" type="range" min="1" max="12" value="4">
+      <div class="range-hints"><span>Lento</span><span>Rápido</span></div>
+    </section>
+    <div class="side-footer"><span class="status-dot"></span> Bang! Bang! <span class="footer-version">v1.0</span></div>
+  </aside>
 </div>
 <div id="overlay" hidden></div>
 <script src="assets.js"></script>

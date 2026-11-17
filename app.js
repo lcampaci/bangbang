@@ -116,7 +116,7 @@
     const win = $('#win').getBoundingClientRect();
     const d = document.createElement('div'); d.className = 'dlg';
     d.style.width = px(wd); d.style.height = px(hd);
-    const sc = win.width / $('#win').offsetWidth;
+    const sc = $('#cv').getBoundingClientRect().width / 512;
     const pos = opts && opts.pos ? opts.pos : { x: win.left + (win.width - wd * 2 * sc) / 2, y: win.top + 60 * sc };
     d.style.left = pos.x + 'px'; d.style.top = pos.y + 'px';
     if (sc !== 1) { d.style.transform = 'scale(' + sc + ')'; d.style.transformOrigin = '0 0'; }
@@ -322,10 +322,13 @@
   const langSelect = $('#language'); langSelect.value = language;
   langSelect.addEventListener('change', () => {
     language = langSelect.value; localStorage.setItem('bb-language', language);
-    $('#fullscreen').textContent = tr(document.fullscreenElement ? 'Sair da tela cheia' : 'Tela cheia');
-    $('#tools label:first-child').firstChild.textContent = language === 'pt' ? 'Idioma ' : 'Language ';
-    $('#tools label:nth-of-type(2)').firstChild.textContent = language === 'pt' ? 'Escala ' : 'Scale ';
-    $('#tools label:nth-of-type(3)').firstChild.textContent = language === 'pt' ? 'Velocidade do tiro ' : 'Shot speed ';
+    $('#fullscreen').querySelector('span:last-child').textContent = language === 'pt' ? (document.fullscreenElement ? 'Sair da tela cheia' : 'Tela cheia') : (document.fullscreenElement ? 'Exit full screen' : 'Full screen');
+    $('.side-title').textContent = language === 'pt' ? 'Painel do jogo' : 'Game panel';
+    $('.side-subtitle').textContent = language === 'pt' ? 'PREFERÊNCIAS' : 'PREFERENCES';
+    $('.section-title').textContent = language === 'pt' ? 'EXIBIÇÃO' : 'DISPLAY';
+    $('.tool-label[for=language]').textContent = language === 'pt' ? 'Idioma' : 'Language';
+    $('.tool-label[for=speed]').firstChild.textContent = language === 'pt' ? 'Velocidade do tiro ' : 'Shot speed ';
+    $('.range-hints').innerHTML = language === 'pt' ? '<span>Lento</span><span>Rápido</span>' : '<span>Slow</span><span>Fast</span>';
     $('#next').textContent = language === 'pt' ? 'Próximo tiro:' : 'Next shot:';
     buildMenu(); updateStatus();
   });
@@ -334,27 +337,22 @@
     try { if (!document.fullscreenElement) await $('#desk').requestFullscreen(); else await document.exitFullscreen(); }
     catch (err) { /* tela cheia pode ser bloqueada pelo navegador */ }
   });
-  document.addEventListener('fullscreenchange', () => { fsButton.textContent = tr(document.fullscreenElement ? 'Sair da tela cheia' : 'Tela cheia'); fit(); });
-  $('#tools label:first-child').firstChild.textContent = language === 'pt' ? 'Idioma ' : 'Language ';
-  $('#tools label:nth-of-type(2)').firstChild.textContent = language === 'pt' ? 'Escala ' : 'Scale ';
-  $('#tools label:nth-of-type(3)').firstChild.textContent = language === 'pt' ? 'Velocidade do tiro ' : 'Shot speed ';
-    $('#next').textContent = language === 'pt' ? 'Próximo tiro:' : 'Next shot:';
-
-  // ---------- scale -----------------------------------------------------
-  function fit() {
-    const v = +$('#scale').value, w = $('#win');
-    const W = w.offsetWidth + 20, H = w.offsetHeight + 60;
-    let s = v || Math.max(1, Math.min(innerWidth / W, innerHeight / H));
-    if (!v) s = Math.max(1, Math.floor(s * 4) / 4); if (!v && Math.min(innerWidth / W, innerHeight / H) < 1) s = Math.min(innerWidth / W, innerHeight / H);
-    w.style.transform = 'scale(' + s + ')'; w.style.marginBottom = (w.offsetHeight * (s - 1)) + 'px'; w.style.marginTop = '0';
-  }
-  addEventListener('resize', fit); $('#scale').onchange = fit;
+  document.addEventListener('fullscreenchange', () => { fsButton.querySelector('span:last-child').textContent = language === 'pt' ? (document.fullscreenElement ? 'Sair da tela cheia' : 'Tela cheia') : (document.fullscreenElement ? 'Exit full screen' : 'Full screen'); });
+  $('.side-title').textContent = language === 'pt' ? 'Painel do jogo' : 'Game panel';
+  $('.side-subtitle').textContent = language === 'pt' ? 'PREFERÊNCIAS' : 'PREFERENCES';
+  $('.section-title').textContent = language === 'pt' ? 'EXIBIÇÃO' : 'DISPLAY';
+  $('.tool-label[for=language]').textContent = language === 'pt' ? 'Idioma' : 'Language';
+  $('.tool-label[for=speed]').firstChild.textContent = language === 'pt' ? 'Velocidade do tiro ' : 'Shot speed ';
+  $('.range-hints').innerHTML = language === 'pt' ? '<span>Lento</span><span>Rápido</span>' : '<span>Slow</span><span>Fast</span>';
+  $('#next').textContent = language === 'pt' ? 'Próximo tiro:' : 'Next shot:';
+  $('#speed-value').textContent = $('#speed').value;
+  $('#speed').addEventListener('input', () => { $('#speed-value').textContent = $('#speed').value; });
 
   // ---------- boot ------------------------------------------------------
   let n = 0; const names = Object.keys(window.ASSETS);
   names.forEach((k) => { const im = new Image(); im.onload = () => { if (++n === names.length) boot(); }; im.src = 'data:image/png;base64,' + window.ASSETS[k].png; IMG[k] = im; });
   function boot() {
-    buildMenu(); fresh(); fit();
+    buildMenu(); fresh();
     if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch(() => {});
   }
 })();
